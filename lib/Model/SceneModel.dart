@@ -8,7 +8,11 @@ class SceneModel {
   String titre;
   String description;
   String image;
-  SceneModel({required this.id, required this.description, required this.titre, required this.image});
+  SceneModel(
+      {required this.id,
+      required this.description,
+      required this.titre,
+      required this.image});
   factory SceneModel.formJson(Map<String, dynamic> json) => SceneModel(
       id: json["id"],
       titre: json["titre"],
@@ -18,8 +22,10 @@ class SceneModel {
         'id': id,
         "titre": titre,
         "description": description,
+        "image": image,
       };
   String get gettitre => titre;
 
   String get getdescription => description;
+  String get getimage => image;
 }
