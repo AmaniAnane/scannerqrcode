@@ -15,10 +15,9 @@ class addScene extends StatefulWidget {
   }
 }
 
-Future<SceneModel> addScenes( String titre, String description, String image,BuildContext context) 
-async {
-  var Url = "localhost:9087/addscene";
-  var response = await http.post(Url,
+Future<SceneModel> addScenes( String titre, String description,
+    String image,BuildContext context )async {
+  var response = await http.post(new Uri.http('localhost:9087/', 'addscene'),
       headers: <String, String>{"Content-type": "application/json"},
       body: jsonEncode(<String, String>{
         "titre": titre,
@@ -31,7 +30,7 @@ async {
       context: context,
       barrierDismissible: true,
       builder: (BuildContext dialogContext) {
-        return  MyAlertDialog(title: 'Backend Response', content: response.body);
+        return MyAlertDialog(title: 'Backend Response', content: response.body);
       },
     );
   }
@@ -44,10 +43,9 @@ class MyAlertDialog extends StatelessWidget {
 
   MyAlertDialog({
     required this.title,
-  required   this.content,
-   this.actions = const [],
+    required this.content,
+    this.actions = const [],
   });
-
 
   @override
   Widget build(BuildContext context) {
@@ -65,12 +63,13 @@ class MyAlertDialog extends StatelessWidget {
   }
 }
 
-}
-
 class addSceneState extends State<addScene> {
   final minimumPadding = 5.0;
-  TextEditingController titreontoller = TextEditingController();
+  TextEditingController titrecontoller = TextEditingController();
   TextEditingController discContoller = TextEditingController();
+  TextEditingController imageContoller =TextEditingController();
+
+  SceneModel scene;
   @override
   Widget build(BuildContext context) {
     TextStyle? textStyle = Theme.of(context).textTheme.subtitle2;
@@ -88,7 +87,7 @@ class addSceneState extends State<addScene> {
                       top: minimumPadding, bottom: minimumPadding),
                   child: TextFormField(
                     style: textStyle,
-                    controller: titreontoller,
+                    controller: titrecontoller,
                     validator: (String? value) {
                       if (value != null && value.isEmpty) {
                         return 'enter le titre de Scene';
@@ -124,7 +123,7 @@ class addSceneState extends State<addScene> {
                       top: minimumPadding, bottom: minimumPadding),
                   child: TextFormField(
                     style: textStyle,
-                    controller: discContoller,
+                    controller: imageContoller,
                     validator: (String? value) {
                       if (value != null && value.isEmpty) {
                         return 'selectionner limage de Scene';
@@ -139,7 +138,21 @@ class addSceneState extends State<addScene> {
                   )),
               RaisedButton(
                 child: Text('Save'),
-                onPressed: () {},
+                onPressed: () {
+                  async {
+                    String titre = titrecontoller.text;
+                    String discription = discContoller.text;
+                    String image = imageContoller.text;
+                    SceneModel scenes =
+                        await addScene(context,titre ,discription, image);
+                    titrecontoller.text = '';
+                    discContoller.text = '';
+                    imageContoller.text='';
+                    setState(() {
+                      scene = scenes;
+                    });}
+                  }
+
               )
             ],
           ),
