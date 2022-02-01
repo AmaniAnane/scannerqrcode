@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:scannerqrcode/screens/addScene.dart';
+import 'package:scannerqrcode/screens/AddDataScene.dart';
+
 import 'package:scannerqrcode/screens/scanqr.dart';
 import 'package:dio/dio.dart';
 
@@ -82,14 +83,14 @@ class _MyHomePageState extends State<MyHomePage> {
               title: Text('Register des Scenes'),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => addScene()));
+                    MaterialPageRoute(builder: (context) => AddDataScene()));
               },
             ),
             ListTile(
               title: Text('Get Scenes'),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => addScene()));
+                    MaterialPageRoute(builder: (context) => AddDataScene()));
               },
             )
           ],
