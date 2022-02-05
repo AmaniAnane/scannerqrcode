@@ -43,6 +43,8 @@ dependencies:
   dio: ^4.0.4
   http: ^0.13.4
   json_serializable: ^3.5.1
+  flutter_svg: ^1.0.3
+  google_fonts: ^2.3.0
    
 dev_dependencies:
   flutter_test:
