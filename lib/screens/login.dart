@@ -87,7 +87,7 @@ class _SigninState extends State<Signin> {
                         return 'Enter something';
                       } else if (RegExp(
                               r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                          .hasMatch(value!)) {
+                          .hasMatch(value)) {
                         return null;
                       } else {
                         return 'Enter valid email';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scannerqrcode/screens/AddDataScene.dart';
+import 'package:scannerqrcode/screens/login.dart';
 
 import 'package:scannerqrcode/screens/scanqr.dart';
 import 'package:dio/dio.dart';
@@ -89,8 +90,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               title: Text('Get Scenes'),
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AddDataScene()));
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Signin()));
               },
             )
           ],

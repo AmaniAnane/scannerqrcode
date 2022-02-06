@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/src/widgets/editable_text.dart';
 import 'package:http/http.dart' as http;
 import 'package:dio/dio.dart';
 
@@ -62,6 +63,32 @@ class DataBaseHelper {
     var response = await http
         .delete(Uri(path: url), headers: {"Content-Type": "application/json"});
     print("${response.statusCode}");
+    return response;
+  }
+
+//
+  Future<Response> singup(
+      String emailController, String passwordController) async {
+    var url = 'localhost:9087/register';
+
+    Map data = {
+      'email': '$emailController',
+      'password': '$passwordController',
+    };
+    //encode Map to JSON
+    var body = json.encode(data);
+    var dio = Dio();
+
+    var response = await dio.post(
+      'http://10.0.2.2:9087/register',
+      options: Options(headers: {
+        HttpHeaders.contentTypeHeader: "application/json",
+      }),
+      data: body,
+    );
+
+    print("${response.statusCode}");
+    print("${response.data}");
     return response;
   }
 }
