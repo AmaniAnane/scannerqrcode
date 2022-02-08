@@ -104,6 +104,11 @@ class AddDataSceneState extends State<AddDataScene> {
                   ),
                 ),
               ),
+              Center(
+                child: file == null
+                    ? Text("no Image selected")
+                    : Image.file(file!),
+              )
             ],
           ),
         ),
